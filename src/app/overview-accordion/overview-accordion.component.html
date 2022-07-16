@@ -1,0 +1,43 @@
+<section>
+    <mat-accordion >
+        <mat-expansion-panel (opened)="panelOpenState = true"
+                             (closed)="panelOpenState = false"
+                             [expanded]="expanded">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{title}}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-list>
+            <ng-container *ngIf="state !== 'grid'">
+                <mat-list-item>
+                    Implemented side nav menu with two Options - Home and Todos
+                </mat-list-item>
+                <mat-list-item>
+                    Implemented Routing with two routes: Todos List and Todo Details
+                </mat-list-item>
+                <mat-list-item>
+                    Implemented Ag Grid which fetches data and display it in a reactive way (using async pipe)
+                </mat-list-item>
+              </ng-container>
+              <mat-tree  [dataSource]="dataSource" [treeControl]="treeControl">
+                  
+                <mat-tree-node  *matTreeNodeDef="let node" matTreeNodePadding>
+                    <button mat-icon-button disabled></button>
+                    {{node.name}}
+                </mat-tree-node>
+                <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding>
+                    <button mat-icon-button matTreeNodeToggle
+                            [attr.aria-label]="'Toggle ' + node.name">
+                      <mat-icon class="mat-icon-rtl-mirror">
+                        {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+                      </mat-icon>
+                    </button>
+                    {{node.name}}
+                  </mat-tree-node>
+                
+              </mat-tree>
+          </mat-list>
+        </mat-expansion-panel>
+      </mat-accordion>
+</section>

@@ -1,0 +1,17 @@
+:host {
+    margin: 4rem;
+    display: block;
+}
+
+.mat-card {
+    width: 50%;
+    margin: auto;
+}
+
+.back-arrow {
+    display: flex;
+    align-items: center;
+    width: 9%;
+    justify-content: space-between;
+    cursor: pointer;
+}

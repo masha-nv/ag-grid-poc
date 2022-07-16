@@ -1,0 +1,23 @@
+
+<app-overview-accordion state="grid" title="Grid Overview"></app-overview-accordion>
+<span>Selected {{numRowsSelected}} rows</span><button mat-button (click)="clearSelection()">clear selection</button>
+<ag-grid-angular
+class="ag-theme-alpine"
+style="height: 550px; width: 900px"
+[rowData]="cachedTodos ? cachedTodos : rowData$ | async"
+[columnDefs]="colDefs"
+rowSelection="multiple"
+[animateRows]="true"
+(cellClicked)="onCellClicked($event)"
+(rowSelected)="onRowSelected($event)"
+[components]="components"
+[pagination]="pagination"
+[paginationPageSize]="paginationPageSize"
+[cacheBlockSize]="cacheBlockSize"
+(gridReady)="onGridReady($event)"
+(paginationChanged)="onPaginationChange($event)"
+[tooltipHideDelay]="tooltipHideDelay"
+[tooltipShowDelay]="tooltipShowDelay"
+[enableBrowserTooltips]="true"
+
+></ag-grid-angular>

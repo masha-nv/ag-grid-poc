@@ -1,0 +1,15 @@
+<div class="back-arrow" routerLink="/todos">
+    <mat-icon>arrow_back</mat-icon> Go Back
+</div>
+
+
+<ng-container *ngIf="todoDetails$ | async as todoDetails">
+    <mat-card>
+        <mat-card-title>Details for {{todoDetails.title}}</mat-card-title>
+        <ng-container *ngFor="let item of todoDetails | keyvalue">
+            <div>
+                <strong>{{item.key}} </strong>: {{item.value}}
+            </div>
+        </ng-container>
+    </mat-card>
+</ng-container>
