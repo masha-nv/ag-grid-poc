@@ -9,6 +9,7 @@ import { STATUS } from 'src/types/enum';
 import { Todo } from 'src/types/todo';
 import { CompletedComponent } from '../completed/completed.component';
 import { DeleteIconComponent } from '../delete-icon/delete-icon.component';
+import { FlagComponent } from '../flag/flag.component';
 import { TitleComponent } from '../title/title.component';
 import { TodosService } from '../todos.service';
 
@@ -18,12 +19,12 @@ import { TodosService } from '../todos.service';
   styleUrls: ['./todos-grid.component.scss']
 })
 export class TodosGridComponent implements OnInit {
-  @ViewChild(AgGridAngular) grid!: AgGridAngular
   rowData$!: Observable<Todo[] | any>;
   components = {
     delete: DeleteIconComponent,
     completed: CompletedComponent,
-    title: TitleComponent
+    title: TitleComponent,
+    flag: FlagComponent
   }
   colDefs: ColDef[] = [
     {field: "userId", filter: 'agNumberColumnFilter', sortable: true, resizable: true}, 
@@ -36,11 +37,12 @@ export class TodosGridComponent implements OnInit {
     
     cellRendererParams: (params: ICellRendererParams) => ({completedState: params.value})
   },
+    {field: '', headerName: 'Flag', cellRenderer: 'flag', resizable: true, tooltipValueGetter: ()=> 'Categorize'},
     {field: '', 
     cellRenderer: "delete",
     tooltipValueGetter: this.toolTipGetter,
     cellRendererParams: (params: ICellRendererParams) => ({rowIndex: params.rowIndex, numRowsSelected: this.numRowsSelected})
-  }
+  },
   ];
   numRowsSelected = 0;
   tooltipShowDelay!:number;
@@ -77,7 +79,7 @@ export class TodosGridComponent implements OnInit {
   }
 
   onPaginationChange(event: any) {
-    const currentPage = this.grid.api.paginationGetCurrentPage();
+    const currentPage = this.agGrid.api.paginationGetCurrentPage();
   }
 
   onCellClicked(event: CellClickedEvent){

@@ -21,6 +21,9 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatTreeModule} from '@angular/material/tree';
 import { OverviewAccordionComponent } from './overview-accordion/overview-accordion.component';
 import { HomeComponent } from './home/home.component';
+import { FlagComponent } from './flag/flag.component';
+import {MatMenuModule} from '@angular/material/menu';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +35,7 @@ import { HomeComponent } from './home/home.component';
     TodoDetailsComponent,
     OverviewAccordionComponent,
     HomeComponent,
-
+    FlagComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +50,8 @@ import { HomeComponent } from './home/home.component';
     MatButtonModule,
     MatCardModule,
     MatExpansionModule,
-    MatTreeModule
+    MatTreeModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]

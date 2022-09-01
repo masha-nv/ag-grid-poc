@@ -3,10 +3,10 @@
 <span>Selected {{numRowsSelected}} rows</span><button mat-button (click)="clearSelection()">clear selection</button>
 <ag-grid-angular
 class="ag-theme-alpine"
-style="height: 550px; width: 900px"
+style="height: 550px; width: 1100px"
 [rowData]="cachedTodos ? cachedTodos : rowData$ | async"
 [columnDefs]="colDefs"
-rowSelection="multiple"
+
 [animateRows]="true"
 (cellClicked)="onCellClicked($event)"
 (rowSelected)="onRowSelected($event)"
@@ -21,3 +21,5 @@ rowSelection="multiple"
 [enableBrowserTooltips]="true"
 
 ></ag-grid-angular>
+
+ <!-- rowSelection="multiple" -->

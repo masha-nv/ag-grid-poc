@@ -1,0 +1,18 @@
+<div [matMenuTriggerFor]="menu" class="square-container">
+    <div class="row">
+        <div class="square"></div>
+        <div class="square"></div>
+    </div>
+    <div class="row">
+        <div class="square"></div>
+        <div class="square"></div>
+    </div>
+</div>
+<mat-menu #menu="matMenu" class="drop-down-menu">
+    <ng-container *ngFor="let category of categories">
+        <div mat-menu-item style="display: flex; align-items: center;" (click)="onCategorySelect(category)">
+            <div class="category" style="width: 1rem; height: 1rem; display: inline-block;" [ngStyle]="{background: category}"></div>
+            <button style="outline: none; border: none; background: inherit">{{category | titlecase}} Category</button>
+        </div>
+    </ng-container>
+</mat-menu>
