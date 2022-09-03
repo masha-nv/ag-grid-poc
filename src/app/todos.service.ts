@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { map, Observable, Subject } from 'rxjs';
 import { Todo } from 'src/types/todo';
 
 
@@ -8,7 +8,7 @@ import { Todo } from 'src/types/todo';
   providedIn: 'root'
 })
 export class TodosService {
-
+  flagSub = new Subject<Todo>();
   constructor(private http: HttpClient) { }
 
   getTodos(): Observable<Todo[] | any>{

@@ -23,6 +23,7 @@ import { OverviewAccordionComponent } from './overview-accordion/overview-accord
 import { HomeComponent } from './home/home.component';
 import { FlagComponent } from './flag/flag.component';
 import {MatMenuModule} from '@angular/material/menu';
+import { UserIdComponent } from './user-id/user-id.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import {MatMenuModule} from '@angular/material/menu';
     TodoDetailsComponent,
     OverviewAccordionComponent,
     HomeComponent,
-    FlagComponent
+    FlagComponent,
+    UserIdComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +53,7 @@ import {MatMenuModule} from '@angular/material/menu';
     MatCardModule,
     MatExpansionModule,
     MatTreeModule,
-    MatMenuModule
+    MatMenuModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

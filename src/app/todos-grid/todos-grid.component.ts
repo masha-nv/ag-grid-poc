@@ -1,10 +1,8 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AgGridAngular } from 'ag-grid-angular';
 import { CellClickedEvent, ColDef, GridReadyEvent, ICellRendererParams, RowSelectedEvent } from 'ag-grid-community';
-import { ToolPanelComponent } from 'ag-grid-community/dist/lib/components/framework/componentTypes';
-import { Observable, tap } from 'rxjs';
+import { concatAll, map, Observable, tap, toArray } from 'rxjs';
 import { STATUS } from 'src/types/enum';
 import { Todo } from 'src/types/todo';
 import { CompletedComponent } from '../completed/completed.component';
@@ -12,6 +10,7 @@ import { DeleteIconComponent } from '../delete-icon/delete-icon.component';
 import { FlagComponent } from '../flag/flag.component';
 import { TitleComponent } from '../title/title.component';
 import { TodosService } from '../todos.service';
+import { UserIdComponent } from '../user-id/user-id.component';
 
 @Component({
   selector: 'app-todos-grid',
@@ -24,10 +23,11 @@ export class TodosGridComponent implements OnInit {
     delete: DeleteIconComponent,
     completed: CompletedComponent,
     title: TitleComponent,
-    flag: FlagComponent
+    flag: FlagComponent,
+    userId: UserIdComponent
   }
   colDefs: ColDef[] = [
-    {field: "userId", filter: 'agNumberColumnFilter', sortable: true, resizable: true}, 
+    {field: "userId", cellRenderer: "userId", filter: 'agNumberColumnFilter', sortable: true, resizable: true}, 
     {field: "id", filter: 'agNumberColumnFilter', sortable: true, resizable: true}, 
     {field: "title", cellRenderer: "title", sortable: true, resizable: true}, 
     {field: "completed",
@@ -67,10 +67,13 @@ export class TodosGridComponent implements OnInit {
 
   onGridReady(params: GridReadyEvent<Todo[]>) {
     this.rowData$ = this.todosService.getTodos().pipe(
+      concatAll(),
+      map((todo: object | any) => todo = ({...todo, flagColor: ''})),
+      toArray(),
       tap(res => {
+        console.log(res)
         this.cachedTodos = res;
-        
-      })
+      }),
     )
   }
 
@@ -91,7 +94,6 @@ export class TodosGridComponent implements OnInit {
       this.router.navigateByUrl(`/todos/${event.value}`)
       return;
     }
-    // if (event.colDef.field === '')
   }
 
   toggleStatus(event: CellClickedEvent) {
@@ -107,5 +109,4 @@ export class TodosGridComponent implements OnInit {
   onRowSelected(event: RowSelectedEvent) {
     this.numRowsSelected = event.api.getSelectedRows().length;
   }
-
 }
