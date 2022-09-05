@@ -6,3 +6,17 @@
 button {
     margin-bottom: 2rem;
 }
+
+.main {
+    display: flex;
+}
+
+.json-row {
+    border: 1px solid;
+    &:nth-child(2n) {
+        background-color: azure;
+    }
+    &:nth-child(2n-1) {
+        background-color: aliceblue;
+    }
+}

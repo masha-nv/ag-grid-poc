@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AgGridAngular } from 'ag-grid-angular';
-import { CellClickedEvent, ColDef, GridReadyEvent, ICellRendererParams, RowSelectedEvent } from 'ag-grid-community';
+import { CellClickedEvent, ColDef, GridReadyEvent, ICellRendererParams, RowClassRules, RowDropZoneParams, RowSelectedEvent } from 'ag-grid-community';
 import { concatAll, map, Observable, tap, toArray } from 'rxjs';
 import { STATUS } from 'src/types/enum';
 import { Todo } from 'src/types/todo';
@@ -27,23 +27,27 @@ export class TodosGridComponent implements OnInit {
     userId: UserIdComponent
   }
   colDefs: ColDef[] = [
-    {field: "userId", cellRenderer: "userId", filter: 'agNumberColumnFilter', sortable: true, resizable: true}, 
-    {field: "id", filter: 'agNumberColumnFilter', sortable: true, resizable: true}, 
-    {field: "title", cellRenderer: "title", sortable: true, resizable: true}, 
+    {field: "userId", cellRenderer: "userId", filter: 'agNumberColumnFilter', rowDrag: true, dndSource: true}, 
+    {field: "id", filter: 'agNumberColumnFilter'}, 
+    {field: "title", cellRenderer: "title"}, 
     {field: "completed",
     cellRenderer: "completed", 
-    sortable: true, resizable: true,
-    
-    
     cellRendererParams: (params: ICellRendererParams) => ({completedState: params.value})
   },
-    {field: '', headerName: 'Flag', cellRenderer: 'flag', resizable: true, tooltipValueGetter: ()=> 'Categorize'},
+    {field: '', headerName: 'Flag', cellRenderer: 'flag', tooltipValueGetter: ()=> 'Categorize'},
     {field: '', 
     cellRenderer: "delete",
     tooltipValueGetter: this.toolTipGetter,
     cellRendererParams: (params: ICellRendererParams) => ({rowIndex: params.rowIndex, numRowsSelected: this.numRowsSelected})
   },
   ];
+
+  defaultColDef: ColDef = {
+    sortable: true, filter: true, resizable: true, flex: 1
+  }
+  rowClassRules: RowClassRules = {
+    
+  }
   numRowsSelected = 0;
   tooltipShowDelay!:number;
   tooltipHideDelay!:number;
@@ -71,11 +75,30 @@ export class TodosGridComponent implements OnInit {
       map((todo: object | any) => todo = ({...todo, flagColor: ''})),
       toArray(),
       tap(res => {
-        console.log(res)
         this.cachedTodos = res;
       }),
     )
   }
+  onDragOver(event: any) {
+    const dragSupported: DataTransfer | null = event.dataTransfer;
+    if (dragSupported) {
+      event.dataTransfer.dropEffect = 'move';
+    }
+    event.preventDefault();
+  }
+
+  onDrop(event: any) {
+    const jsonData = event.dataTransfer.getData('application/json');
+    const eJsonRow = document.createElement('div');
+    eJsonRow.classList.add('json-row');
+    eJsonRow.style.border = '1px solid'
+    eJsonRow.innerText = jsonData;
+    const eJsonDisplay = document.querySelector('#eJsonDisplay')!;
+    eJsonDisplay.appendChild(eJsonRow);
+    
+    event.preventDefault();
+  }
+
 
   toolTipGetter(){
     return 'double click to delete row'
