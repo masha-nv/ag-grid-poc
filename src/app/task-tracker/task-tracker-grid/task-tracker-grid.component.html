@@ -1,0 +1,13 @@
+<button mat-button mat-raised-button color="primary" (click)="addNewTask()">Add new task</button>
+
+<ag-grid-angular class="ag-theme-alpine" #grid
+[rowData]="rowData"
+[columnDefs]="colDefs"
+[defaultColDef]="defaultColDef"
+style="width: auto; height: 100%; margin: 3rem"
+[rowHeight]="130"
+(gridReady)="onGridReady($event)"
+
+>
+
+</ag-grid-angular>

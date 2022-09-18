@@ -1,0 +1,36 @@
+<div class="container">
+    <h1 mat-dialog-title>Enter Task Details</h1>
+
+    
+    <div mat-dialog-content>
+        <form [formGroup]="form" class="form">
+            <mat-form-field floatLabel="always">
+                <mat-label>Id</mat-label>
+                <input matInput formControlName="id">
+            </mat-form-field>
+
+            <mat-form-field floatLabel="always">
+                <mat-label>Title</mat-label>
+                <input matInput formControlName="title">
+            </mat-form-field>
+
+            <mat-form-field floatLabel="always">
+                <mat-label>Description</mat-label>
+                <input matInput formControlName="description">
+            </mat-form-field>
+
+            <mat-form-field floatLabel="always">
+            
+                <mat-label>Assignee</mat-label>
+                <mat-select matInput matNativeControl formControlName="assignee">
+                    <mat-option *ngFor="let assignee of assignees" [value]="assignee.value">{{assignee.name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </form>
+    </div>
+      
+    <div mat-dialog-actions>
+        <button mat-button (click)="onCancel()">Cancel</button>
+        <button mat-raised-button color="primary" cdkFocusInitial (click)="onSave()" [disabled]="form.invalid">Save</button>
+  </div>
+  </div>
