@@ -58,8 +58,6 @@ export class TaskTrackerComponent implements OnInit {
     {'READY FOR DEVELOPMENT': newTask, 'IN PROGRESS': {} as ITask, 'CODE REVIEW': {} as ITask, 'READY FOR TESTING': {} as ITask, 'DONE': {},}
     )
     this.grid.api.setRowData(this.rowData)
-    console.clear()
-    console.log(this.rowData)
   }));
     
   }

@@ -27,7 +27,6 @@ export class TaskDetailsComponent implements OnInit, ICellRendererAngularComp {
   getTask(params:ICellRendererParams){
     this.status = params.colDef?.field as string;
     this.task = params.data[this.status]
-    console.log(params, this.status, this.task)
 
   }
 
