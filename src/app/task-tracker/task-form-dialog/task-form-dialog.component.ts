@@ -47,6 +47,6 @@ export class TaskFormDialogComponent implements OnInit {
     this.dialogRef.close()
   }
   onSave(){
-    this.dialogRef.close(this.form.value)
+    this.dialogRef.close({id: this.form.get('id')?.value,...this.form.value})
   }
 }

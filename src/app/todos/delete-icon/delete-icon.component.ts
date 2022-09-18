@@ -15,7 +15,6 @@ export class DeleteIconComponent implements OnInit, ICellRendererAngularComp {
 
   agInit(params: ICellRendererParams<any, any>): void {
     this.deleteSubj.pipe(tap(() => {
-      console.log(params.rowIndex)
       const selectedRows = params.api.getSelectedRows()
       params.api.applyTransaction({remove: selectedRows})
     }))
