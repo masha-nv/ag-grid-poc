@@ -4,26 +4,27 @@ import { HttpClientModule}  from '@angular/common/http'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AgGridModule } from 'ag-grid-angular';
-import { CompletedComponent } from './completed/completed.component';
-import { NotcompletedComponent } from './notcompleted/notcompleted.component';
-import { TitleComponent } from './title/title.component';
+import { CompletedComponent } from './todos/completed/completed.component';
+import { NotcompletedComponent } from './todos/notcompleted/notcompleted.component';
+import { TitleComponent } from './todos/title/title.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatIconModule} from '@angular/material/icon';
-import { DeleteIconComponent } from './delete-icon/delete-icon.component';
-import { TodosGridComponent } from './todos-grid/todos-grid.component';
+import { DeleteIconComponent } from './todos/delete-icon/delete-icon.component';
+import { TodosGridComponent } from './todos/todos-grid/todos-grid.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
-import { TodoDetailsComponent } from './todo-details/todo-details.component';
+import { TodoDetailsComponent } from './todos/todo-details/todo-details.component';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatTreeModule} from '@angular/material/tree';
 import { OverviewAccordionComponent } from './overview-accordion/overview-accordion.component';
 import { HomeComponent } from './home/home.component';
-import { FlagComponent } from './flag/flag.component';
+import { FlagComponent } from './todos/flag/flag.component';
 import {MatMenuModule} from '@angular/material/menu';
-import { UserIdComponent } from './user-id/user-id.component';
+import { UserIdComponent } from './todos/user-id/user-id.component';
+import { TaskTrackerComponent } from './task-tracker/task-tracker-list/task-tracker.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { UserIdComponent } from './user-id/user-id.component';
     OverviewAccordionComponent,
     HomeComponent,
     FlagComponent,
-    UserIdComponent
+    UserIdComponent,
+    TaskTrackerComponent
   ],
   imports: [
     BrowserModule,
