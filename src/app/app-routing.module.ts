@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { TaskTrackerComponent } from './task-tracker/task-tracker-list/task-tracker.component';
+import { TaskTrackerComponent } from './task-tracker/task-tracker-grid/task-tracker-grid.component';
 import { TodoDetailsComponent } from './todos/todo-details/todo-details.component';
 import { TodosGridComponent } from './todos/todos-grid/todos-grid.component';
 

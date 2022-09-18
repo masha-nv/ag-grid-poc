@@ -24,7 +24,15 @@ import { HomeComponent } from './home/home.component';
 import { FlagComponent } from './todos/flag/flag.component';
 import {MatMenuModule} from '@angular/material/menu';
 import { UserIdComponent } from './todos/user-id/user-id.component';
-import { TaskTrackerComponent } from './task-tracker/task-tracker-list/task-tracker.component';
+import { TaskTrackerComponent } from './task-tracker/task-tracker-grid/task-tracker-grid.component';
+import { TaskDetailsComponent } from './task-tracker/task-details/task-details.component';
+import { TaskFormDialogComponent } from './task-tracker/task-form-dialog/task-form-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
+
 
 @NgModule({
   declarations: [
@@ -39,7 +47,9 @@ import { TaskTrackerComponent } from './task-tracker/task-tracker-list/task-trac
     HomeComponent,
     FlagComponent,
     UserIdComponent,
-    TaskTrackerComponent
+    TaskTrackerComponent,
+    TaskDetailsComponent,
+    TaskFormDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -56,6 +66,12 @@ import { TaskTrackerComponent } from './task-tracker/task-tracker-list/task-trac
     MatExpansionModule,
     MatTreeModule,
     MatMenuModule,
+    MatDialogModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]
